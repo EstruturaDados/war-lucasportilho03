@@ -3,7 +3,83 @@
 // ============================================================================
 //        
 // ============================================================================
-//
+//PRIMEIRA VERSÃO DO DESAFIO NÍVEL NOVATO
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h> 
+
+//Definição constante
+#define MAX_TERRITORIOS 5 //Constante definida para 5 territórios
+
+// -- Definição da estrutura STRUCT
+struct Territorio {
+    char nome[30];
+    char cor[10];
+    int tropas;
+};
+
+// -- Função para limpar o buffer de entrada --
+void limparBufferEntrada() {
+    int c;
+    while((c= getchar())!= '\n' && c != EOF);
+}
+
+//Função Principal
+int main() {
+    struct Territorio mapa[MAX_TERRITORIOS]; //Declaração de um vetor de 5 structs Territorio
+
+        //Exibe as orientações iniciais do programa para cadastro dos territorios
+      
+        printf("Vamos cadastrar os 5 territorios iniciais do nosso mundo!\n");
+        printf("===========================================================");
+
+        //Laço for que pergunta 5 territorios diferentes. 
+        for(int i =0; i < MAX_TERRITORIOS; i++){
+            printf("\nCADASTRANDO TERRITORIO %d --\n", i + 1); // A cada contagem no loop vai mostrando o número do território
+
+            printf("Nome do Territorio: ");
+            fgets(mapa[i].nome, 30, stdin); // Coloca dentro do indice do vetor o nome cadastrado
+
+            printf("Cor do Exercito: ");
+            fgets(mapa[i].cor, 10, stdin); // Coloca dentro do indice do vetor a cor cadastrada
+
+            mapa[i].nome[strcspn(mapa[i].nome, "\n")] = '\0'; //limpa o \n que digitado junto do ENTER.
+            mapa[i].cor[strcspn(mapa[i].cor, "\n")] = '\0';
+
+
+            printf("Número de Tropas: ");
+            scanf("%d", &mapa[i].tropas);// // Coloca dentro do indice do vetor o número de tropas cadastradas
+
+            limparBufferEntrada(); //Chama a função que Limpa buffer
+        }
+        printf("\n--Cadastro Inicial concluido com sucesso!\n");
+        printf("=========\n");
+        printf("Mapa do Mundo - Estado Atual\n");
+        printf("=========");
+
+        //Laço for que percorre cada um dos itens cadastrados no array e os exibe.
+        for (int i = 0; i < MAX_TERRITORIOS; i++ ){ //Executa enquanto o i for menor que p máximo de território
+            printf("\nTERRITORIO %d\n ", i + 1); //Como começa em 0 o laõ, ele pula o indice em 1 (0+1)
+            printf("-Nome: %s\n ", mapa[i].nome ); //Acessa o indice nome do vetor e exibe.
+            printf("-Dominado por exercito: %s\n ", mapa[i].cor);
+            printf("-Tropas: %d\n ", mapa[i].tropas);
+
+            printf("=========\n");
+
+        }
+
+            return 0; //Fim do programa
+
+}
+
+
+
+
+
+
+
+
+
 // OBJETIVOS:
 // - Modularizar completamente o código em funções especializadas.
 // - Implementar um sistema de missões para um jogador.
@@ -31,7 +107,7 @@
 
 // --- Função Principal (main) ---
 // Função principal que orquestra o fluxo do jogo, chamando as outras funções em ordem.
-int main() {
+//int main() {
     // 1. Configuração Inicial (Setup):
     // - Define o locale para português.
     // - Inicializa a semente para geração de números aleatórios com base no tempo atual.
@@ -51,8 +127,8 @@ int main() {
     // 3. Limpeza:
     // - Ao final do jogo, libera a memória alocada para o mapa para evitar vazamentos de memória.
 
-    return 0;
-}
+  //  return 0;
+//}
 
 // --- Implementação das Funções ---
 
